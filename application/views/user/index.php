@@ -15,15 +15,14 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Pengguna</h2>
+                    <h2>User</h2>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
                   <table id="datatable-buttons" class="table table-striped table-bordered">
                       <thead>
                         <tr>
-                          <th width="20%">Nama Peternak</th>
-                          <th width="20%">Alamat</th>
+                          <th width="20%">E-mail</th>
                           <th width="15%">Username</th>
                           <th width="10%">Password</th>
                           <th width="10%">Privillage</th>
@@ -37,8 +36,7 @@
                       <tbody>
                       <?php foreach ($list as $data => $value) { ?>
                         <tr>
-                        <td><?php echo $value->nama_lengkap ?></td>
-                        <td><?php echo $value->alamat ?></td>
+                        <td><?php echo $value->email ?></td>
                         <td><?php echo $value->username ?></td>
                         <td><?php echo $value->password ?></td>
                         
@@ -56,8 +54,8 @@
                        
 
                           <td>
-                              <?php echo form_open('pengguna/destroy/'.$value->id_user)  ?>
-                              <a class="btn btn-info" href="<?php echo base_url('pengguna/edit/'.$value->id_user) ?>">
+                              <?php echo form_open('User/destroy/'.$value->id_user)  ?>
+                              <a class="btn btn-info" href="<?php echo base_url('User/edit/'.$value->id_user) ?>">
                               <i class="fa fa-pencil"></i>
                               </a>
                               <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin?')"><i class="fa fa-close"></i></button>

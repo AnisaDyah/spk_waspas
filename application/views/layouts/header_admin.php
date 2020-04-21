@@ -13,7 +13,7 @@ if($this->session->status !== ('Logged'))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>NS. QUAIL FARM</title>
+    <title>Sistem Pendukung Keputusan</title>
 
     <!-- Bootstrap -->
     <link href="<?php echo base_url('assets/vendors/bootstrap/dist/css/bootstrap.min.css')?>" rel="stylesheet">
@@ -43,7 +43,7 @@ if($this->session->status !== ('Logged'))
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="<?php echo base_url('admin')?>" class="site_title"><span><center><b>NS. QUAIL FARM</b></center></span></a>
+              <a href="<?php echo base_url('admin')?>" class="site_title"><span><center><b>Sistem Pendukung Keputusan</b></center></span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -73,42 +73,41 @@ if($this->session->status !== ('Logged'))
                   <li><a><i class="fa fa-edit"></i> User <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                    
-                      <li><a href="<?php echo base_url('pengguna/create')?>">Tambah User</a></li>
-                      <li><a href="<?php echo base_url('pengguna/')?>">List User</a></li>
+                      <li><a href="<?php echo base_url('User/create')?>">Tambah User</a></li>
+                      <li><a href="<?php echo base_url('User/')?>">List User</a></li>
                     </ul>
                   </li>
                   <?php endif; ?>
                   <?php if($this->session->userdata('id_user_level') == '1'): ?>
-                  <li><a><i class="fa fa-edit"></i> Setoran Telur <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-edit"></i> Kriteria <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?php echo base_url('setoran/create')?>">Tambah Setoran</a></li>
-                      <li><a href="<?php echo base_url('setoran/')?>">Setoran</a></li>
-                      <li><a href="<?php echo base_url('setoran/tabel')?>">Tabel Setoran</a></li>
-                      <li><a href="<?php echo base_url('setoran/grafik_admin')?>">Grafik Setoran</a></li>
-                      <li><a href="<?php echo base_url('laporan/')?>">Cetak Laporan</a></li>
+                      <li><a href="<?php echo base_url('kriteria/create')?>">Tambah Kriteria</a></li>
+                      <li><a href="<?php echo base_url('kriteria/')?>">List Kriteria</a></li>
+                     
+                    </ul>
+                  </li>
+                  <?php endif; ?>
+                  <?php if($this->session->userdata('id_user_level') == '1'): ?>
+                  <li><a><i class="fa fa-edit"></i> Tenaga Kerja <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="<?php echo base_url('tenaga_kerja/create')?>">Tambah Tenaga Kerja</a></li>
+                      <li><a href="<?php echo base_url('tenaga_kerja/')?>">List Tenaga Kerja</a></li>
+                     
                     </ul>
                   </li>
                   <?php endif; ?>
                   <?php if($this->session->userdata('id_user_level') == '2'): ?>
-                  <li><a><i class="fa fa-edit"></i> Setoran Telur <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="<?php echo base_url('setoran/setoran_user')?>">Setoran</a></li>
-                      <li><a href="<?php echo base_url('setoran/cari_setoran')?>">Grafik Setoran</a></li>
-                      <li><a href="<?php echo base_url('laporan/')?>">Cetak Laporan</a></li>
-                    </ul>
-                   
-                  </li>
-                  <?php endif; ?>
-                  <!-- <li><a><i class="fa fa-edit"></i> Produk <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="<?php echo base_url('produk/create')?>">Form Produk</a></li>
-                      <li><a href="<?php echo base_url('produk/')?>">Tabel Produk</a></li>
-                    </ul>
-                  </li> -->
                   <li>
                   
-                    <a href="<?php echo base_url('peramalan/')?>">
-                    <i class="fa fa-search"></i>Proyeksi Harga</a>
+                  <a href="<?php echo base_url('tenaga_kerja/')?>">
+                  <i class="fa fa-search"></i>List Tenaga Kerja</a>
+                </li>
+                  <?php endif; ?>
+                
+                  <li>
+                  
+                    <a href="<?php echo base_url('perhitungan/')?>">
+                    <i class="fa fa-search"></i>Perhitungan WASPAS</a>
                   </li>
                 </ul>
               </div>

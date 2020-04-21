@@ -2,7 +2,7 @@
     
     defined('BASEPATH') OR exit('No direct script access allowed');
     
-    class Pengguna_model extends CI_Model {
+    class User_model extends CI_Model {
 
         public function list()
         {
@@ -32,8 +32,7 @@
         {
             $ubah = array(
                 'id_user_level' => $data['id_user_level'],
-                'nama_lengkap' => $data['nama_lengkap'],
-                'alamat'  => $data['alamat'],
+                'email' => $data['email'],
                 'username'  => $data['username'],
                 'password'  => $data['password']
             );

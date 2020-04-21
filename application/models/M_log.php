@@ -4,14 +4,14 @@ class M_log extends CI_Model {
  
     public function save_log($param)
     {
-        $sql        = $this->db->insert_string('histori_log',$param);
+        $sql        = $this->db->insert_string('log_histori',$param);
         $ex         = $this->db->query($sql);
         return $this->db->affected_rows($sql);
     }
 
     public function histori_admin()
         {
-            $query = $this->db->get('histori_log');
+            $query = $this->db->get('log_histori');
             return $query->result();
         }
 }

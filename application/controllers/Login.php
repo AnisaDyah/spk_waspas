@@ -9,6 +9,7 @@ class Login extends CI_Controller {
         $this->load->library('session');
         $this->load->helper('url', 'form');
         $this->load->model('Login_model');
+        $this->load->model('User_model');
     }
     public function index()
     {
@@ -39,8 +40,43 @@ class Login extends CI_Controller {
         {
             redirect('login');
         }
+        
     }
 
+    public function register()
+    { 
+        $this->load->view('register');
+    }
+
+    public function daftar()
+        {
+            
+                $data = [
+                    'id_user_level' => '2',
+                    'email' => $this->input->post('email'),
+                    'username' => $this->input->post('username'),
+                    'password' => md5($this->input->post('password'))
+                ];
+                
+                $this->form_validation->set_rules('email', 'email', 'required');
+                $this->form_validation->set_rules('username', 'Username', 'required|is_unique[user.username]');
+                $this->form_validation->set_rules('password', 'Password', 'required');
+
+                
+    
+                if ($this->form_validation->run() != false) {
+                    $result = $this->User_model->insert($data);
+                    //helper_log("add", "menambahkan user");
+                    if ($result) {
+                        redirect('login');
+                    }
+                } else {
+                    redirect('login/register');
+                    
+                }
+            
+
+        }
     public function logout()
     { 
         $this->session->sess_destroy();

@@ -2,7 +2,7 @@
     
     defined('BASEPATH') OR exit('No direct script access allowed');
     
-    class Pengguna extends CI_Controller {
+    class User extends CI_Controller {
     
         public function __construct()
         {
@@ -10,7 +10,7 @@
             $this->load->helper('url', 'form');
             $this->load->library('pagination');
             $this->load->library('form_validation');
-            $this->load->model('Pengguna_model');
+            $this->load->model('User_model');
 
             // if($this->session->privilege != 'Administrator')
             // {
@@ -21,17 +21,17 @@
         public function index()
         {
             $data = [
-                'list' => $this->Pengguna_model->list(),
-                'user_level'=> $this->Pengguna_model->user_level()
+                'list' => $this->User_model->list(),
+                'user_level'=> $this->User_model->user_level()
                 
             ];
-            $this->load->view('pengguna/index', $data);
+            $this->load->view('user/index', $data);
         }
         
         public function create()
         {
-            $data['user_level'] = $this->Pengguna_model->user_level();
-            $this->load->view('pengguna/create',$data);
+            $data['user_level'] = $this->User_model->user_level();
+            $this->load->view('User/create',$data);
         }
 
         public function store()
@@ -39,14 +39,12 @@
             
                 $data = [
                     'id_user_level' => $this->input->post('privilege'),
-                    'nama_lengkap' => $this->input->post('nama_lengkap'),
-                    'alamat' => $this->input->post('alamat'),
+                    'email' => $this->input->post('email'),
                     'username' => $this->input->post('username'),
                     'password' => md5($this->input->post('password'))
                 ];
                 
-                $this->form_validation->set_rules('nama_lengkap', 'Nama Lengkap', 'required');
-                $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+                $this->form_validation->set_rules('email', 'email', 'required');
                 $this->form_validation->set_rules('privilege', 'ID User Level', 'required');
                 $this->form_validation->set_rules('username', 'Username', 'required|is_unique[user.username]');
                 $this->form_validation->set_rules('password', 'Password', 'required');
@@ -54,13 +52,13 @@
                 
     
                 if ($this->form_validation->run() != false) {
-                    $result = $this->Pengguna_model->insert($data);
+                    $result = $this->User_model->insert($data);
                     helper_log("add", "menambahkan user");
                     if ($result) {
-                        redirect('pengguna');
+                        redirect('User');
                     }
                 } else {
-                    redirect('pengguna/create');
+                    redirect('User/create');
                     
                 }
             
@@ -69,24 +67,24 @@
 
         public function show($id_user)
         {
-            $pengguna = $this->Pengguna_model->show($id_user);
-            $user_level = $this->Pengguna_model->user_level();
+            $User = $this->User_model->show($id_user);
+            $user_level = $this->User_model->user_level();
             $data = [
-                'data' => $pengguna,
+                'data' => $User,
                 'user_level'=>$user_level
             ];
-            $this->load->view('pengguna/show', $data);
+            $this->load->view('User/show', $data);
         }
 
         public function edit($id_user)
         {
-            $pengguna = $this->Pengguna_model->show($id_user);
-            $user_level = $this->Pengguna_model->user_level();
+            $User = $this->User_model->show($id_user);
+            $user_level = $this->User_model->user_level();
             $data = [
-                'pengguna' => $pengguna,
+                'User' => $User,
                 'user_level'=>$user_level
             ];
-            $this->load->view('pengguna/edit', $data);
+            $this->load->view('User/edit', $data);
         }
     
         public function update($id_user)
@@ -95,22 +93,21 @@
             $id_user = $this->input->post('id_user');
             $data = array(
                 'id_user_level' => $this->input->post('privilege'),
-                'nama_lengkap' => $this->input->post('nama_lengkap'),
-                'alamat' => $this->input->post('alamat'),
+                'email' => $this->input->post('email'),
                 'username' => $this->input->post('username'),
                 'password' => md5($this->input->post('password'))
             );
 
-            $this->Pengguna_model->update($id_user, $data);
+            $this->User_model->update($id_user, $data);
             helper_log("edit", "mengubah data user");
-            redirect('pengguna');
+            redirect('User');
         }
     
         public function destroy($id_user)
         {
-            $this->Pengguna_model->delete($id_user);
+            $this->User_model->delete($id_user);
             helper_log("delete", "menghapus data user");
-            redirect('pengguna');
+            redirect('User');
         }
     
     }

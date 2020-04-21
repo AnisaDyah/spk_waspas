@@ -6,15 +6,12 @@
             <br/><br/><br/>
             <legend>Tambah User</legend>
             <div class="col-xs-12 col-sm-12 col-md-12">
-            <?php echo form_open('pengguna/store'); ?>
+            <?php echo form_open('User/store'); ?>
               
+             
               <div class="form-group">
-                <label for="nama">Nama Peternak</label>
-                <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" placeholder="Masukkan Nama">
-              </div>
-              <div class="form-group">
-                <label for="alamat">Alamat</label>
-                <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukkan Alamat">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" id="email" name="email" placeholder="Masukkan Alamat E-mail">
               </div>
               <div class="form-group">
                 <label for="username">Username</label>
@@ -34,7 +31,7 @@
                 </select>
             </div>
 
-              <a class="btn btn-info" href="<?php echo base_url() ?>pengguna">Kembali</a>
+              <a class="btn btn-info" href="<?php echo base_url() ?>User">Kembali</a>
               <button type="submit" class="btn btn-primary">OK</button>
             <?php echo form_close() ?>
             </div>

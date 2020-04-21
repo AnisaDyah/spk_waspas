@@ -30,13 +30,17 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <b>Login</b>
+    <b>Register</b>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Masukkan Username dan Password</p>
+    <p class="login-box-msg">Daftarkan Diri Anda</p>
 
-    <form action="<?php echo site_url('login/login'); ?>" method="post">
+    <form action="<?php echo site_url('login/daftar'); ?>" method="post">
+    <div class="form-group has-feedback">
+        <input type="text" name="email" class="form-control" placeholder="E-mail">
+        <span class="glyphicon glyphicon-user  form-control-feedback"></span>
+      </div>
       <div class="form-group has-feedback">
         <input type="text" name="username" class="form-control" placeholder="Username">
         <span class="glyphicon glyphicon-user  form-control-feedback"></span>
@@ -55,8 +59,8 @@
         <!-- /.col -->
         
         <table class="table">
-        <td>  <a class="btn btn-primary btn-block btn-flat" href="<?php echo base_url('Login/register') ?>">Register</a></td>
-        <td> <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button></td>
+        <td>  <a class="btn btn-primary btn-block btn-flat" href="<?php echo base_url('Login/') ?>">Kembali</a></td>
+        <td> <button type="submit" class="btn btn-primary btn-block btn-flat">Daftar</button></td>
         </table>
        
         <!-- /.col -->
