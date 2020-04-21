@@ -13,10 +13,10 @@
             <p>Aplikasi ini digunakan untuk : </p>
             <ul>
               <!-- <li>Menambahkan Data User (Pengepul dan Peternak)</li> -->
-              <li>Memvalidasi Data Setoran Telur</li>
-              <li>Melihat Laporan Setoran Telur</li>
-              <li>Melihat Rekap Setoran Telur dalam Bentuk Grafik</li>
-              <li>Menghitung Peramalan</li>
+              <li>Menambahkan Data Kriteria</li>
+              <li>Menambahkan Data Tenaga Kerja</li>
+              <li>Menghitung SPK dengan Metode WASPAS</li>
+              <li>Sebagai Sitem Pendukung Keputusan untuk Memilih Tenaga Kerja Kontrak</li>
             </ul>
           </div>
         </div>        

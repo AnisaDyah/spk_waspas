@@ -43,13 +43,13 @@ if($this->session->status !== ('Logged'))
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="<?php echo base_url('admin')?>" class="site_title"><span><center><b>Sistem Pendukung Keputusan</b></center></span></a>
+              <a href="<?php echo base_url('admin')?>" class="site_title"><span><center><b>SPK WASPAS</b></center></span></a>
             </div>
 
             <div class="clearfix"></div>
 
             <!-- menu profile quick info -->
-            <center><img src="<?php echo base_url('assets/img/logos3.png')?>" width="75" height="75"></center>
+            <center><img src="<?php echo base_url('assets/img/ava2.png')?>"  class="img-circle"></center>
             <div class="profile clearfix">
               <!-- <div class="profile_pic">
                 <img src="<?php echo base_url('assets/img/logos2.png')?>" alt="." class="img-circle profile_img">
@@ -146,7 +146,7 @@ if($this->session->status !== ('Logged'))
               <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo base_url('assets/img/logos3.png')?>" class="user-image" alt="User Image" width="30" height="30">
+              <img src="<?php echo base_url('assets/img/ava3.png')?>" class="img-circle user_img" alt="User Image" >
               <span class="hidden-xs">
                 <?php 
                   echo $this->session->username;            
