@@ -90,8 +90,8 @@ if($this->session->status !== ('Logged'))
                   <?php if($this->session->userdata('id_user_level') == '1'): ?>
                   <li><a><i class="fa fa-edit"></i> Tenaga Kerja <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?php echo base_url('tenaga_kerja/create')?>">Tambah Tenaga Kerja</a></li>
-                      <li><a href="<?php echo base_url('tenaga_kerja/')?>">List Tenaga Kerja</a></li>
+                      <li><a href="<?php echo base_url('Tenaga_kerja/create')?>">Tambah Tenaga Kerja</a></li>
+                      <li><a href="<?php echo base_url('Tenaga_kerja/')?>">List Tenaga Kerja</a></li>
                      
                     </ul>
                   </li>

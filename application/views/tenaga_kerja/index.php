@@ -15,20 +15,16 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>User</h2>
+                    <h2>Data Tenaga Kerja</h2>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
                   <table id="datatable-buttons" class="table table-striped table-bordered">
                       <thead>
                         <tr>
-                          <th width="20%">E-mail</th>
-                          <th width="15%">Username</th>
-                          <th width="10%">Password</th>
-                          <th width="10%">Privillage</th>
-                          <th width="15%">
-                          
-                          </th>
+                          <th width="20%">Nama Tenaga Kerja</th>
+                          <th width="10%">Jabatan</th>
+                          <th width="15%"></th>
                           
                         </tr>
                       </thead>
@@ -36,29 +32,22 @@
                       <tbody>
                       <?php foreach ($list as $data => $value) { ?>
                         <tr>
-                        <td><?php echo $value->email ?></td>
-                        <td><?php echo $value->username ?></td>
-                        <td><?php echo $value->password ?></td>
+                        <td><?php echo $value->nama ?></td>
+                        <td><?php echo $value->jabatan ?></td>
                         
-                        <td>
-                          <?php foreach ($user_level as $k)
-                          {
-                            if($k->id_user_level == $value->id_user_level)
-                            {?>
-                           
-                            <?php echo $k->user_level;
-                            }
-                          }
-                          ?>
-                        </td>
+                       
+                       
+                        <?php if($this->session->userdata('id_user_level') == '1'): ?>
                           <td>
-                              <?php echo form_open('User/destroy/'.$value->id_user)  ?>
-                              <a class="btn btn-info" href="<?php echo base_url('User/edit/'.$value->id_user) ?>">
+                              <?php echo form_open('Tenaga_kerja/destroy/'.$value->id_naker)  ?>
+                              <a class="btn btn-info" href="<?php echo base_url('Tenaga_kerja/edit/'.$value->id_naker) ?>">
                               <i class="fa fa-pencil"></i>
                               </a>
                               <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah anda yakin?')"><i class="fa fa-close"></i></button>
                               <?php echo form_close() ?>
                           </td>
+                      <?php endif; ?>
+                      
                         </tr>
                       <?php } ?>
                       </tbody>
