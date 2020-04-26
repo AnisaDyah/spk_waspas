@@ -81,8 +81,8 @@ if($this->session->status !== ('Logged'))
                   <?php if($this->session->userdata('id_user_level') == '1'): ?>
                   <li><a><i class="fa fa-edit"></i> Kriteria <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?php echo base_url('kriteria/create')?>">Tambah Kriteria</a></li>
-                      <li><a href="<?php echo base_url('kriteria/')?>">List Kriteria</a></li>
+                      <li><a href="<?php echo base_url('Kriteria/create')?>">Tambah Kriteria</a></li>
+                      <li><a href="<?php echo base_url('Kriteria/')?>">List Kriteria</a></li>
                      
                     </ul>
                   </li>

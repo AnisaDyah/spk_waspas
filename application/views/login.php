@@ -36,7 +36,7 @@
   <div class="login-box-body">
     <p class="login-box-msg">Masukkan Username dan Password</p>
 
-    <form action="<?php echo site_url('login/login'); ?>" method="post">
+    <form action="<?php echo site_url('Login/login'); ?>" method="post">
       <div class="form-group has-feedback">
         <input type="text" name="username" class="form-control" placeholder="Username">
         <span class="glyphicon glyphicon-user  form-control-feedback"></span>

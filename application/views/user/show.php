@@ -35,7 +35,7 @@
                           ?>
             </p>
           </div>
-          <a class="btn btn-info" href="<?php echo base_url('pengguna/') ?>">Kembali</a>
+          <a class="btn btn-info" href="<?php echo base_url('User/') ?>">Kembali</a>
         </div>
       </div>
         </div>        
