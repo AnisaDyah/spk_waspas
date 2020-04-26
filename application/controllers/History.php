@@ -8,23 +8,20 @@
             parent::__construct();
             $this->load->helper('url', 'form');
             $this->load->model('M_log');
-          //  $this->load->model('Setoran_Model');
-           // $this->load->model('Pengguna_model');
+           $this->load->model('User_model');
         }
 
-        // public function index()
-        // {
+        public function index()
+        {
             
-        //     $user = $this->Setoran_Model->get_user();
-        //     $riwayat = $this->M_log->histori_admin();
-        //     $user_level = $this->Pengguna_model->user_level();
-        //     $data = [
-        //         'user' => $user,
-        //         'riwayat'=>$riwayat,
-        //         'user_level'=> $user_level
-        //     ];
-        //     $this->load->view('history/history_admin', $data);
-        // }
+            $user = $this->User_model->get_user();
+            $riwayat = $this->M_log->histori_admin();
+            $data = [
+                'user' => $user,
+                'riwayat'=>$riwayat
+            ];
+            $this->load->view('history/history_admin', $data);
+        }
 
         // public function riwayat_user()
         // {

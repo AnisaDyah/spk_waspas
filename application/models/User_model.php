@@ -48,16 +48,12 @@
             $this->db->delete('user');
         }
 
-        public function user_level()
+        public function get_user()
         {
-            $query = $this->db->get('user_level');
+            $query = $this->db->get('user');
             return $query->result();
         }
-        public function id_user_level($id_user)
-        {
-            $query = $this->db->query("SELECT id_user_level FROM user WHERE id_user=$id_user ")->result();
-            return $query;
-        }
+        
 
         
     }

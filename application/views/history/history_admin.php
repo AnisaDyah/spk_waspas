@@ -24,9 +24,9 @@
                         <tr>
                           <th width="20%">Waktu</th>
                           <th width="20%">User</th>
-                          <th width="20%">User Level</th>
                           <th width="15%">Activity</th>
-                          <th width="1%"></th>
+                          <th width="5%"></th>
+                       
                          
                           
                           
@@ -44,26 +44,11 @@
                             if($k->id_user == $value->log_user)
                             {?>
                             
-                            <?php echo $k->nama_lengkap;
+                            <?php echo $k->username;
                             }
                         }
                           ?>
-                          </td>
                         
-                        <td>
-                        <?php foreach ($user as $k)
-                          {
-                          foreach ($user_level as $l)
-                          {
-                            if(($value->log_user == $k->id_user) && ($k->id_user_level == $l->id_user_level))
-                            {?>
-                            
-                            <?php echo $l->user_level;
-                            }
-                          }
-                        }
-                          ?>
-                        </td>
                         <td><?php echo $value->log_desc ?></td>
                         <?php } ?>
                         </tr>
