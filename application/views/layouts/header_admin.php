@@ -83,19 +83,12 @@ if($this->session->status !== ('Logged'))
                     <ul class="nav child_menu">
                       <li><a href="<?php echo base_url('Kriteria/create')?>">Tambah Kriteria</a></li>
                       <li><a href="<?php echo base_url('Kriteria/')?>">List Kriteria</a></li>
-                     
-                    </ul>
-                  </li>
-                  <?php endif; ?>
-                  <?php if($this->session->userdata('id_user_level') == '1'): ?>
-                  <li><a><i class="fa fa-edit"></i> Sub Kriteria <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="<?php echo base_url('Sub_kriteria/create')?>">Tambah Sub Kriteria</a></li>
                       <li><a href="<?php echo base_url('Sub_kriteria/')?>">List Sub Kriteria</a></li>
                      
                     </ul>
                   </li>
                   <?php endif; ?>
+                  
                   <?php if($this->session->userdata('id_user_level') == '1'): ?>
                   <li><a><i class="fa fa-edit"></i> Tenaga Kerja <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">

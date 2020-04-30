@@ -22,7 +22,9 @@
         {
             $data = [
                 'list' => $this->Sub_Kriteria_model->list(),
-                'kriteria'=> $this->Sub_Kriteria_model->get_kriteria()
+                'kriteria'=> $this->Sub_Kriteria_model->get_kriteria(),
+                'count_kriteria'=> $this->Sub_Kriteria_model->count_kriteria(),
+                'sub_kriteria' => $this->Sub_Kriteria_model->list()
                 
             ];
             $this->load->view('sub_kriteria/index', $data);

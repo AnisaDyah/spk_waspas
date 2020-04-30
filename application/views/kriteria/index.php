@@ -22,8 +22,8 @@
                   <table id="datatable-buttons" class="table table-striped table-bordered">
                       <thead>
                         <tr>
-                          <th width="20%">Keterangan</th>
                           <th width="15%">Kode Kriteria</th>
+                          <th width="20%">Keterangan</th>
                           <th width="10%">Bobot</th>
                           <th width="10%">Jenis</th>
                           <th width="15%">
@@ -36,9 +36,9 @@
                       <tbody>
                       <?php foreach ($list as $data => $value) { ?>
                         <tr>
-                        <td><?php echo $value->keterangan ?></td>
                         <td><?php echo $value->kode_kriteria ?></td>
-                        <td><?php echo $value->bobot ?></td>
+                        <td><?php echo $value->keterangan ?></td>
+                        <td><?php echo $value->bobot."%" ?></td>
                         <td><?php echo $value->jenis ?></td>
                         
                        

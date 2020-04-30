@@ -53,6 +53,17 @@
             return $query->result();
         }
 
+        public function count_kriteria(){
+            $query =  $this->db->query("SELECT id_kriteria,COUNT(deskripsi) AS jml_setoran FROM sub_kriteria GROUP BY id_kriteria")->result();
+            return $query;
+        }
+
+        public function data_sub_kriteria($id_kriteria)
+	{
+		$query = $this->db->query("SELECT * FROM sub_kriteria WHERE id_kriteria='$id_kriteria'  ORDER BY nilai DESC;");
+		return $query->result_array();
+	}
+
        
 
         
