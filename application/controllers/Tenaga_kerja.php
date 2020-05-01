@@ -31,7 +31,7 @@
         public function create()
         {
      
-            $this->load->view('tenaga_kerja/create',$data);
+            $this->load->view('tenaga_kerja/create');
         }
 
         //menambahkan data ke database
