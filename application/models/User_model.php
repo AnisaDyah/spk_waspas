@@ -53,6 +53,11 @@
             $query = $this->db->get('user');
             return $query->result();
         }
+        public function user_level()
+        {
+            $query = $this->db->get('user_level');
+            return $query->result();
+        }
         
 
         

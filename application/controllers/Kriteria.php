@@ -31,7 +31,7 @@
         public function create()
         {
      
-            $this->load->view('kriteria/create',$data);
+            $this->load->view('kriteria/create');
         }
 
         //menambahkan data ke database

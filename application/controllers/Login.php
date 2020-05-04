@@ -83,6 +83,11 @@ class Login extends CI_Controller {
         helper_log("logout", "Logout");
         redirect('login');
     }
+
+    public function home()
+    { 
+        $this->load->view('admin/index');
+    }
 }
 
 /* End of file Login.php */

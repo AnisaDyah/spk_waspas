@@ -19,7 +19,7 @@
         }
 
         public function index()
-        {
+        { 
             $data = [
                 'list' => $this->User_model->list(),
                 'user_level'=> $this->User_model->user_level()
