@@ -39,7 +39,8 @@
         {
                 $data = [
                     'nama' => $this->input->post('nama'),
-                    'jabatan' => $this->input->post('jabatan')
+                    'jabatan' => $this->input->post('jabatan'),
+                    'status' => $this->input->post('status')
                 ];
                 
                 $this->form_validation->set_rules('nama', 'Nama', 'required');
@@ -85,7 +86,8 @@
             $id_naker = $this->input->post('id_naker');
             $data = array(
                 'nama' => $this->input->post('nama'),
-                'jabatan' => $this->input->post('jabatan')
+                'jabatan' => $this->input->post('jabatan'),
+                'status' => $this->input->post('status')
             );
 
             $this->Tenagakerja_model->update($id_naker, $data);

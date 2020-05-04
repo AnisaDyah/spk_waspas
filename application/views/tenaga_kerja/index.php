@@ -24,6 +24,7 @@
                         <tr>
                           <th width="20%">Nama Tenaga Kerja</th>
                           <th width="10%">Jabatan</th>
+                          <th width="10%">Status</th>
                           <th width="15%"></th>
                           
                         </tr>
@@ -34,6 +35,7 @@
                         <tr>
                         <td><?php echo $value->nama ?></td>
                         <td><?php echo $value->jabatan ?></td>
+                        <td><?php echo $value->status ?></td>
                         
                        
                        

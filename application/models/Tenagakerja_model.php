@@ -32,7 +32,8 @@
         {
             $ubah = array(
                 'nama'  => $data['nama'],
-                'jabatan'  => $data['jabatan']
+                'jabatan'  => $data['jabatan'],
+                'status'  => $data['status'],
             );
 
             $this->db->where('id_naker', $id_naker);

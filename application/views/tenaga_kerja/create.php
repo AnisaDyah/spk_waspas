@@ -17,6 +17,14 @@
                 <label for="jabatan">Jabatan</label>
                 <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Masukkan Jabatan Tenaga Kerja">
               </div>
+              <div class="form-group">
+            <label> Status </label>
+                  <select class="form-control" name ="status" id="status"> 
+                  <option selected> --Pilih Jenis Kriteria-- </option>
+                  <option value="aktif">Aktif</option>
+                  <option value="dikunci">Kunci</option>
+                </select>
+            </div>
            
 
               <a class="btn btn-info" href="<?php echo base_url() ?>Tenaga_kerja">Kembali</a>
