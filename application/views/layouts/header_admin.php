@@ -68,7 +68,7 @@ if($this->session->status !== ('Logged'))
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
-                  <li><a href="<?php echo base_url() ?>admin"><i class="fa fa-home"></i> Home </a></li>
+                  <li><a href="<?php echo base_url() ?>Login/home"><i class="fa fa-home"></i> Home </a></li>
                   <?php if($this->session->userdata('id_user_level') == '1'): ?>
                   <li><a><i class="fa fa-edit"></i> User <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">

@@ -20,12 +20,14 @@
 
         public function index()
         {
+            $id_user = $this->session->userdata('id_user');
             $data = [
                 'list' => $this->Perhitungan_model->list(),
                 'kriteria'=> $this->Perhitungan_model->get_kriteria(),
                 'tenaga_kerja'=> $this->Perhitungan_model->get_naker(),
                 'sub_kriteria'=> $this->Perhitungan_model->get_sub_kriteria(),
                 'perhitungan' => $this->Perhitungan_model->list(),
+                'cek_penilaian' => $this->Perhitungan_model->cek_data_penilaian($id_user),
                 
             ];
             // $tenaga_kerja=$this->Perhitungan_model->get_naker();
@@ -71,15 +73,28 @@
 		}
 
 		redirect('perhitungan');
-	}
+    }
+    public function simpan_hasil($id_user,$id_naker)
+    {
+        
+        $data = array(
+            'id_user' => $id_user,
+            'hasil' => $id_naker
+        );
 
+        $this->Perhitungan_model->simpan_hasil($data);
+        helper_log("add", "menambahkan data keputusan");
+        redirect('Perhitungan');
+    }
+
+    public function update_hasil($id_user,$id_naker)
+    {
+        
+        $this->Perhitungan_model->update_hasil($id_user,$id_naker);
+        helper_log("edit", "mengubah data keputusan");
+        redirect('Perhitungan');
+    }
     
-        public function destroy($id_penilaian)
-        {
-            $this->Perhitungan_model->delete($id_penilaian);
-            helper_log("delete", "menghapus data Perhitungan");
-            redirect('Perhitungan');
-        }
     
     }
     

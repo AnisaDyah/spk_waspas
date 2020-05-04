@@ -5,6 +5,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
+              <h2>Perhitungan Keputusan dengan Metode WASPAS</h2>
               </div>
             </div>
 
@@ -150,12 +151,176 @@
         </table>
       </div><!-- /.box-body -->
     </div><!-- /.box -->
-              </div>
+ </div>
+ </div>
 
-              
-            </div>
-          </div>
+<?php if ($cek_penilaian ==NULL ) { ?>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="x_panel">
+        <div class="box-body text-center" style="height: 200px; padding-top: 90px;">
+          isi tabel di atas
         </div>
+      </div>
+    </div>
+  </div>
+<?php } else { ?>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="x_panel">
+      <div class="box-header with-border">
+        <h3 class="box-title">Normalisai</h3>
+      </div><!-- /.box-header -->
+      <div class="x_panel">
+        <table class="table table-hover table-bordered">
+          <thead>
+          <tr>
+              <th>Alternatif</th>
+              <?php foreach ($kriteria as $key): ?>
+                <th><?= $key->kode_kriteria ?></th>
+              <?php endforeach ?>
+            </tr>
+          </thead>
+          <tbody>
+          <?php foreach ($tenaga_kerja as $keys): ?>
+          <tr>
+                <td><?= $keys->nama ?></td>
+                <?php foreach ($kriteria as $key): ?>
+                  <td>
+                    <?php 
+                    $id_user=$this->session->userdata('id_user');
+                      $data_pencocokan = $this->Perhitungan_model->data_nilai($id_user,$keys->id_naker,$key->id_kriteria);
+                      $min_max=$this->Perhitungan_model->get_max_min($id_user,$key->id_kriteria);
+                      if($min_max['jenis']=='Benifit'){
+                      echo $data_pencocokan['nilai']/$min_max['max'];
+                      }else{
+                        echo $min_max['min']/$data_pencocokan['nilai'];
+                      }
+                    ?>
+                  </td>
+                <?php endforeach ?>
+
+               
+              </tr>
+            <?php endforeach ?>
+          </tbody>
+        </table>
+      </div><!-- /.box-body -->
+    </div><!-- /.box -->
+
+    <div class="x_panel">
+      <div class="box-header with-border">
+        <h3 class="box-title">Bobot Kriteria</h3>
+      </div><!-- /.box-header -->
+      <div class="x_panel">
+        <table class="table table-hover table-bordered">
+          <thead>
+          <tr>
+              <?php foreach ($kriteria as $key): ?>
+                <th><?= $key->kode_kriteria ?></th>
+              <?php endforeach ?>
+            </tr>
+          </thead>
+          <tbody>
+          <?php //foreach ($tenaga_kerja as $keys): ?>
+          <tr>
+                <?php foreach ($kriteria as $key): ?>
+                  <td>
+                    <?php 
+                    echo $key->bobot/100;
+                    ?>
+                  </td>
+                <?php endforeach ?>
+
+               
+              </tr>
+            <?php //endforeach ?>
+          </tbody>
+        </table>
+      </div><!-- /.box-body -->
+    </div><!-- /.box -->
+    
+    <div class="x_panel">
+      <div class="box-header with-border">
+        <h3 class="box-title">Nilai Qi</h3>
+      </div><!-- /.box-header -->
+      <div class="box-body">
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>Alternatif</th>
+              <th>Nilai Qi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($tenaga_kerja as $keys): ?>
+              <tr>
+                <td><?= $keys->nama; ?></td>
+                <td>
+                  <?php 
+                    $ta = 0;
+                    $pa = 1;
+                    foreach ($kriteria as $key) {
+                      $id_user=$this->session->userdata('id_user');
+                      $data_pencocokan = $this->Perhitungan_model->data_nilai($id_user,$keys->id_naker,$key->id_kriteria);
+                      $min_max=$this->Perhitungan_model->get_max_min($id_user,$key->id_kriteria);
+
+                          if($min_max['jenis']=='Benifit'){
+                            $p = $data_pencocokan['nilai']/$min_max['max'];
+                          }else{
+                            $p = $min_max['min']/$data_pencocokan['nilai'];
+                          }
+                      $bobot=$key->bobot/100;
+                      $ta += $p*$bobot;
+                      $pa *= pow($p,$bobot);
+                      $qi=(0.5*$ta)+(0.5*$pa);
+                      
+                    }
+                    echo $qi;
+                    $hasil_max[]=$qi;
+                    $id[] = $keys->id_naker;
+                  ?>
+                </td>
+              </tr>
+            <?php endforeach ?>
+          </tbody>
+        </table>
+      </div><!-- /.box-body -->
+    </div><!-- /.box -->
+
+<div class="x_panel">
+      <div class="box-header with-border">
+        <h3 class="box-title">Hasil Keputusan :</h3>
+      </div><!-- /.box-header -->
+      <div class="box-body">
+        <?php 
+         $i = array_search(max($hasil_max), $hasil_max);
+         $max = $id[$i];
+          $hasil = max($hasil_max);
+          $naker_terpilih = $this->Perhitungan_model->hasil($max);
+        ?>
+        <h4>Hasil perhitungan menggunakan metode WASPAS. Alternatif terbaik adalah  <b><?= $naker_terpilih['nama']?></b>dengan jumlah <b><?= "Qi=".$hasil ?>.</b></h4>
+        
+        <?php $cek_simpan = $this->Perhitungan_model->untuk_tombol($id_user,$keys->id_naker); ?>
+        <?php if ($cek_simpan==0) { ?>
+          <?php echo form_open('Perhitungan/simpan_hasil/'.$id_user.'/'.$naker_terpilih['id_naker']); ?>
+        <button type="submit" class="btn btn-primary">Simpan Hasil Keputusan</button>
+        <?php echo form_close(); ?>
+       <?php } else { ?>
+        <?php echo form_open('Perhitungan/update_hasil/'.$id_user.'/'.$naker_terpilih['id_naker']); ?>
+        <button type="submit" class="btn btn-primary">Update Hasil</button>
+        <?php echo form_close(); ?>
+        <?php } ?>
+      </div><!-- /.box-body -->
+    </div><!-- /.box -->
+  
+
+    <?php } ?>
+    </div>
+    </div>
         <!-- /page content -->
+</div>
+</div>
 
         <?php $this->load->view('layouts/footer_admin'); ?>
