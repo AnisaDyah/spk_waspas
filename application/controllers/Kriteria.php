@@ -58,6 +58,7 @@
                         redirect('Kriteria');
                     }
                 } else {
+                    $this->session->set_flashdata('message', 'Semua Data Harus Diisi');
                     redirect('Kriteria/create');
                     
                 }

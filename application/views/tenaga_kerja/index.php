@@ -25,7 +25,9 @@
                           <th width="20%">Nama Tenaga Kerja</th>
                           <th width="10%">Jabatan</th>
                           <th width="10%">Status</th>
+                          <?php if($this->session->userdata('id_user_level') == '1'): ?>
                           <th width="15%"></th>
+                          <?php endif; ?>
                           
                         </tr>
                       </thead>

@@ -38,6 +38,7 @@ class Login extends CI_Controller {
         }
         else
         {
+            $this->session->set_flashdata('message', 'Username atau Password Salah');
             redirect('login');
         }
         

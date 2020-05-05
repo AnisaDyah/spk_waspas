@@ -58,6 +58,7 @@
                         redirect('User');
                     }
                 } else {
+                    $this->session->set_flashdata('message', 'Semua Data Harus Diisi');
                     redirect('User/create');
                     
                 }

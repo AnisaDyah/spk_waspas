@@ -36,7 +36,7 @@
     <script src="<?php echo base_url('assets/raphael/raphael.min.js')?>"></script>
     <script src="<?php echo base_url('assets/morris.js/morris.min.js')?>"></script>
     <script src="<?php echo base_url('assets/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') ?>"></script>
-
+    
     <!-- Custom Theme Scripts -->
     <script src="<?php echo base_url('assets/build/js/custom.min.js')?>"></script>
     <script>

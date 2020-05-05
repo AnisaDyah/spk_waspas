@@ -33,7 +33,8 @@ if($this->session->status !== ('Logged'))
     <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') ?>">
     <!-- Custom Theme Style -->
     <link href="<?php echo base_url('assets/build/css/custom.min.css')?>" rel="stylesheet">
-    <link rel="shortcut icon" href="<?php echo base_url() ?>assets/img/logos2.png">
+    
+    <!--  -->
 
   </head>
 
@@ -43,7 +44,7 @@ if($this->session->status !== ('Logged'))
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="<?php echo base_url('admin')?>" class="site_title"><span><center><b>SPK WASPAS</b></center></span></a>
+              <a href="#" class="site_title"><span><center><b>SPK WASPAS</b></center></span></a>
             </div>
 
             <div class="clearfix"></div>
