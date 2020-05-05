@@ -1,8 +1,11 @@
+<?php 
+	header("Content-type: application/vnd-ms-excel");
+	header("Content-Disposition: attachment; filename=Perhitungan.xls");
+ ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Laporan</title>
+	<title>SPK dengan Metode WASPAS</title>
 </head>
 <style>
     table {
@@ -13,31 +16,178 @@
     }
 </style>
 <body>
-    <h1><?php echo "Laporan $title" ?></h1>
-    <table id="datatable-buttons" class="table table-striped table-bordered">
-                      <thead>
-                        <tr>
-                            
-                            <th width="40%">Nama Produk</th>
-                            <th width="30%">Stok Tersisa</th>
-                            <th width="30%">Jumlah Terjual</th>
-                        </tr>
-                      </thead>
+<table border='1' bgcolor="FF FF 00">
+          <thead>
+          <tr>
+          <th colspan="6" bgcolor="ff8c00"> <b>Penilaian Alternatif</b></th>
+          </tr>
+            <tr>
+              <th>Alternatif</th>
+              <?php foreach ($kriteria as $key): ?>
+                <th><?= $key->kode_kriteria ?></th>
+              <?php endforeach ?>
+            </tr>
+          </thead>
+          <tbody>
 
-                      <tbody>
-                      <?php foreach ($order as $data) { ?>
-                        <tr>
-                            
-                            <td><center><?php echo $data->nama_produk?></center></td>
-                            <td><center><?php echo $data->stok?></center></td>
-                            <td><center><?php echo $data->jumlahterjual?></center></td>
-      
+            <?php foreach ($tenaga_kerja as $keys): ?>
+              <tr>
+                <td><?= $keys->nama ?></td>
+                <?php foreach ($kriteria as $key): ?>
+                  <td>
+                    <?php 
+                    $id_user=$this->session->userdata('id_user');
+                      $data_pencocokan = $this->Perhitungan_model->data_nilai($id_user,$keys->id_naker,$key->id_kriteria);
+                      $penilaian_jabatan=$this->Perhitungan_model->penilaian_jabatan($keys->id_naker);
+                      if($key->id_kriteria==1){
+                        echo $penilaian_jabatan['nilai'];
+                      }else{
+                      echo $data_pencocokan['nilai'];
+                      }
+                    ?>
+                  </td>
+                <?php endforeach ?>
+                </tr>
+                <?php endforeach ?>
 
-<!-- /page content -->
+          </tbody>
+        </table>
+        <br>
+        <br>
+        <table border='1' bgcolor="FF FF 00">
+          <thead>
+          <tr>
+          <th colspan="6" bgcolor="ff8c00"> <b>Matrik Normalisasi</b></th>
+          </tr>
+          <tr>
+              <th>Alternatif</th>
+              <?php foreach ($kriteria as $key): ?>
+                <th><?= $key->kode_kriteria ?></th>
+              <?php endforeach ?>
+            </tr>
+          </thead>
+          <tbody>
+          <?php foreach ($tenaga_kerja as $keys): ?>
+          <tr>
+                <td><?= $keys->nama ?></td>
+                <?php foreach ($kriteria as $key): ?>
+                  <td>
+                    <?php 
+                    $id_user=$this->session->userdata('id_user');
+                      $data_pencocokan = $this->Perhitungan_model->data_nilai($id_user,$keys->id_naker,$key->id_kriteria);
+                      $min_max=$this->Perhitungan_model->get_max_min($id_user,$key->id_kriteria);
+                      if($min_max['jenis']=='Benifit'){
+                      echo $data_pencocokan['nilai']/$min_max['max'];
+                      }else{
+                        echo $min_max['min']/$data_pencocokan['nilai'];
+                      }
+                    ?>
+                  </td>
+                <?php endforeach ?>
 
-                        </tr>
-                      <?php } ?>
-                      </tbody>
-                    </table>
+               
+              </tr>
+            <?php endforeach ?>
+          </tbody>
+        </table>
+        <br>
+        <br>
+        <table border='1' bgcolor="FF FF 00">
+          <thead>
+          <tr>
+          <th colspan="5" bgcolor="ff8c00"> <b>Bobot Kriteria</b></th>
+          </tr>
+          <tr>
+              <?php foreach ($kriteria as $key): ?>
+                <th><?= $key->kode_kriteria ?></th>
+              <?php endforeach ?>
+            </tr>
+          </thead>
+          <tbody>
+          <?php //foreach ($tenaga_kerja as $keys): ?>
+          <tr>
+                <?php foreach ($kriteria as $key): ?>
+                  <td>
+                    <?php 
+                    echo $key->bobot/100;
+                    ?>
+                  </td>
+                <?php endforeach ?>
+
+               
+              </tr>
+            <?php //endforeach ?>
+          </tbody>
+        </table>
+        <br>
+        <br>
+        <table border='1' class="table table-hover table-bordered">
+          <thead>
+          <tr>
+          <th colspan="2" bgcolor="ff8c00"> <b>Nilai QI</b></th>
+          </tr>
+            <tr>
+              <th bgcolor="FF FF 00">Alternatif</th>
+              <th bgcolor="ff8c00">Nilai Qi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($tenaga_kerja as $keys): ?>
+              <tr>
+                <td bgcolor="FF FF 00"><?= $keys->nama; ?></td>
+                <td bgcolor="ff8c00">
+                  <?php 
+                    $ta = 0;
+                    $pa = 1;
+                    foreach ($kriteria as $key) {
+                      $id_user=$this->session->userdata('id_user');
+                      $data_pencocokan = $this->Perhitungan_model->data_nilai($id_user,$keys->id_naker,$key->id_kriteria);
+                      $min_max=$this->Perhitungan_model->get_max_min($id_user,$key->id_kriteria);
+
+                          if($min_max['jenis']=='Benifit'){
+                            $p = $data_pencocokan['nilai']/$min_max['max'];
+                          }else{
+                            $p = $min_max['min']/$data_pencocokan['nilai'];
+                          }
+                      $bobot=$key->bobot/100;
+                      $ta += $p*$bobot;
+                      $pa *= pow($p,$bobot);
+                      $qi=(0.5*$ta)+(0.5*$pa);
+                      
+                    }
+                    echo $qi;
+                    $hasil_max[]=$qi;
+                    $id[] = $keys->id_naker;
+                  ?>
+                </td>
+              </tr>
+            <?php endforeach ?>
+          </tbody>
+        </table>
+        <br>
+        <br>
+        <table border='' class="table table-hover table-bordered">
+          <thead>
+          <?php 
+         $i = array_search(max($hasil_max), $hasil_max);
+         $max = $id[$i];
+          $hasil = max($hasil_max);
+          $naker_terpilih = $this->Perhitungan_model->hasil($max);
+        ?>
+          <tr>
+          <th colspan="6" bgcolor="ff8c00"> <b>Hasil Keputusan</b></th>
+          </tr>
+            <tr>
+              <th colspan="6" bgcolor="FF FF 00">Hasil perhitungan menggunakan metode WASPAS</th>
+            </tr>
+            <tr>
+              <th colspan="6" bgcolor="FF FF 00">Alternatif terbaik adalah  <b><?= $naker_terpilih['nama']?></b> dengan jumlah <b><?= "Qi=".$hasil ?></b></th>
+            </tr>
+          </thead>
+        </table
+        
+        
+        
+
 </body>
 </html>

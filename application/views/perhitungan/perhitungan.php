@@ -336,6 +336,9 @@
         <button type="submit" class="btn btn-primary">Update Hasil</button>
         <?php echo form_close(); ?>
         <?php } ?>
+        <?php echo form_open('Laporan/cetak_laporan'); ?>
+        <button type="submit" class="btn btn-primary">Cetak Perhitungan</button>
+        <?php echo form_close(); ?>
       </div><!-- /.box-body -->
     </div><!-- /.box -->
   
