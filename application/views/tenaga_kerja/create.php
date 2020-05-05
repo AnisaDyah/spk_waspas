@@ -14,9 +14,14 @@
                 <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Keterangan Nama Tenaga Kerja">
               </div>
               <div class="form-group">
-                <label for="jabatan">Jabatan</label>
-                <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Masukkan Jabatan Tenaga Kerja">
-              </div>
+            <label> Jabatan </label>
+                  <select class="form-control" name ="jabatan" id="jabatan"> 
+                  <option selected> --Pilih Jabatan-- </option>
+                  <?php foreach ($jabatan as $k) { ?>
+                  <option value="<?php echo $k->id_sub_kriteria?>"><?php echo $k->deskripsi?></option>
+                <?php } ?>
+                </select>
+            </div>
               <div class="form-group">
             <label> Status </label>
                   <select class="form-control" name ="status" id="status"> 

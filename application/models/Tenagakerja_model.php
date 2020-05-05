@@ -47,6 +47,14 @@
             $this->db->delete('data_naker');
         }
 
+        public function jabatan()
+	{
+		$query = $this->db->query("SELECT * FROM sub_kriteria WHERE id_kriteria='1';");
+		return $query->result();		
+    }
+
+   
+
        
 
         

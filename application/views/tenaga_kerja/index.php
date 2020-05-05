@@ -34,7 +34,17 @@
                       <?php foreach ($list as $data => $value) { ?>
                         <tr>
                         <td><?php echo $value->nama ?></td>
-                        <td><?php echo $value->jabatan ?></td>
+                        <td>
+                        <?php foreach ($jabatan as $k)
+                          {
+                            if($k->id_sub_kriteria == $value->jabatan)
+                            {?>
+                           
+                            <?php echo $k->deskripsi;
+                            }
+                          }
+                          ?>
+                        </td>
                         <td><?php echo $value->status ?></td>
                         
                        

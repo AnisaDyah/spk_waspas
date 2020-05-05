@@ -21,7 +21,8 @@
         public function index()
         {
             $data = [
-                'list' => $this->Tenagakerja_model->list()
+                'list' => $this->Tenagakerja_model->list(),
+                'jabatan' => $this->Tenagakerja_model->jabatan()
                 
             ];
             $this->load->view('tenaga_kerja/index', $data);
@@ -30,8 +31,8 @@
         //menampilkan view create
         public function create()
         {
-     
-            $this->load->view('tenaga_kerja/create');
+            $data['jabatan'] = $this->Tenagakerja_model->jabatan();
+            $this->load->view('tenaga_kerja/create',$data);
         }
 
         //menambahkan data ke database
@@ -75,7 +76,8 @@
         {
             $tenaga_kerja = $this->Tenagakerja_model->show($id_naker);
             $data = [
-                'tenaga_kerja' => $tenaga_kerja
+                'tenaga_kerja' => $tenaga_kerja,
+                'jabatan' => $this->Tenagakerja_model->jabatan()
             ];
             $this->load->view('tenaga_kerja/edit', $data);
         }

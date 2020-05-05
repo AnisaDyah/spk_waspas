@@ -14,9 +14,21 @@
                 <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $tenaga_kerja->nama ?>">
               </div>
               <div class="form-group">
-                <label for="jabatan">Jabatan</label>
-                <input type="text" class="form-control" id="jabatan" name="jabatan" value="<?php echo $tenaga_kerja->jabatan ?>">
-              </div>
+          <label> Jabatan </label>
+              <select class="form-control" name ="jabatan" id="jabatan"> 
+                <option selected>
+                <?php
+                  foreach($jabatan as $k) {
+                    $s='';
+                      if($k->id_sub_kriteria == $tenaga_kerja->jabatan)
+                      { $s='selected'; }
+                ?>
+                 <option value="<?php echo $k->id_sub_kriteria ?>" <?php echo $s ?>>
+                    <?php echo $k->deskripsi ?>
+                  </option>
+                  <?php } ?>
+            </select>
+        </div>
               <div class="form-group">
           <label> Status </label>
               <select class="form-control" name ="status" id="status"> 

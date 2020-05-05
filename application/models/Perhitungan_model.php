@@ -49,6 +49,11 @@
             $query = $this->db->get('sub_kriteria');
             return $query->result();
         }
+        public function penilaian_jabatan($id_naker)
+        {
+            $query = $this->db->query("SELECT * FROM sub_kriteria JOIN data_naker ON sub_kriteria.id_sub_kriteria=data_naker.jabatan WHERE data_naker.id_naker='$id_naker';");
+            return $query->row_array();		
+        }
         public function cek_data_penilaian($id_user)
         {
             $query = $this->db->query("SELECT * FROM penilaian WHERE id_user='$id_user';");
